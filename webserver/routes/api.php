@@ -18,6 +18,7 @@ use App\Http\Controllers\ArduinoController;
 Route::post('/login', [ArduinoController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::post('/{username}/{guid}', [ArduinoController::class, 'pool'])->name('pool');
     Route::post('/logout', [ArduinoController::class, 'logout']);
 });
 

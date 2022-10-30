@@ -68,3 +68,4 @@
         @endforeach
     </div>
 </x-app-layout>
+{{-- @vite(["resources/js/bootstrap.js"]) --}}

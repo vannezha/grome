@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ArduinoEvent;
 use App\Http\Controllers\CommunityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
@@ -18,6 +19,13 @@ use App\Models\Grometool;
 |
 */
 
+Route::get('/ws', function(){
+    return view('layouts.ws');
+});
+// Route::post('/ws', function(){
+//     event(new ArduinoEvent("test pesan", "vannyezha","grome800000001"));
+//     // return view('layouts.ws');
+// });
 Route::redirect('/', 'login');
 // Route::post('/test/{aa}',[GrometoolController::class,'test']);
 
@@ -40,3 +48,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/{username}/{guid}',[GrometoolController::class,'guid']);
     Route::get('/{username}',[GrometoolController::class,'profile']);
 });
+

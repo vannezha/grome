@@ -19,8 +19,11 @@ class GrometoolFactory extends Factory
         $randomNumber1 = $this->faker->numberBetween(300,600)/10;
         $randomNumber2 = $this->faker->numberBetween(300,600)/10;
         $randomNumber3 = $this->faker->numberBetween(300,600)/10;
+        $randomNumber4 = $this->faker->numberBetween(0,255);
+        $randomNumber5 = $this->faker->numberBetween(0,255);
+        $randomNumber6 = $this->faker->numberBetween(0,255);
         // $randomNumber = $this->faker->num
-        $setpoint = '{"variable":["humidity","temperature","light_intensity"], "data":{"humidity": ' .$randomNumber1 .',"temperature":'.$randomNumber2 .',"light_intensity":' . $randomNumber3 . '}}';
+        $setpoint = '{"variable":["air_humidity","soil_humidity","temperature","Rlight_intensity","Glight_intensity","Blight_intensity"], "data":{"air_humidity": ' .$randomNumber1 .',"soil_humidity":'.$randomNumber2 .',"temperature":' . $randomNumber3 . ',"Rlight_intensity":' . $randomNumber4 . ',"Glight_intensity":' . $randomNumber5 . ',"Blight_intensity":' . $randomNumber5 . '}}';
             // 'variable': {'a','b',''c'},
             // 'data': [{$randomNumber},{$randomNumber},{$randomNumber}],
         // }";
@@ -28,6 +31,7 @@ class GrometoolFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'guid' => 'grome'.$this->faker->unique()->numberBetween(800000000,900000000),
+            'variable' => '["air_humidity","soil_humidity","temperature","Rlight_intensity","Glight_intensity","Blight_intensity"]',
             'setpoint' => $setpoint,
         ];
     }
