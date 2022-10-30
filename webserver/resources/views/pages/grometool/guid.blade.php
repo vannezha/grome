@@ -67,5 +67,10 @@
             @endpush
         @endforeach
     </div>
+    <script type="module">
+        window.Echo.channel('vannyezha_grome800000001').listen('PoolEvent', function(data){
+            console.log(data)
+        })
+    </script>
 </x-app-layout>
 {{-- @vite(["resources/js/bootstrap.js"]) --}}

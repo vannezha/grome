@@ -1,6 +1,6 @@
 <?php
 
-// namespace App\Events;
+namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ArduinoEvent implements ShouldBroadcast
+class PoolEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,10 +19,10 @@ class ArduinoEvent implements ShouldBroadcast
      *
      * @return void
      */
-    protected String $message;
+    public Array $message;
     public String $username;
     public String $guid;
-    public function __construct(String $message, String $username, String $guid)
+    public function __construct(Array $message, String $username, String $guid)
     {
         $this->message = $message;
         $this->username = $username;
@@ -34,25 +34,15 @@ class ArduinoEvent implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    // public function broadcastOn()
-    // {
-    //     return new PrivateChannel('channel-name');
-    // }
-
     public function broadcastOn()
     {
         return new Channel($this->username."_".$this->guid);
     }
 
-    // ini nambahin 2 fungsi buat custome event dan data
-    // public function broadcastAs(){
-    //     // return $this->guid;
-    //     return "App\Events\ArduinoEvent";
-    // }
-
     public function broadcastWith(){
-        return [
-            'message' => $this->message,
-        ];
+        return $this->message;
+        // return [
+        //     'message' => $this->message,
+        // ];
     }
 }

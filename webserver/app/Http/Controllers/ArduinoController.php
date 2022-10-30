@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ArduinoEvent;
 use App\Models\Grometool;
 use App\Models\User;
+use ArduinoEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -42,8 +42,5 @@ class ArduinoController extends Controller
         ];
     }
 
-    public function pool(Request $request){
-        event(new ArduinoEvent("test aja bang","vannyezha","grome800000001"));
-        return 'berhasil';
-    }
+
 }
