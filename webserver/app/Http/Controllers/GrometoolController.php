@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PoolEvent;
 use App\Models\Grometool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -77,6 +78,7 @@ class GrometoolController extends Controller
             // update database based on the following query
             $status = Grometool::where('guid',$request->input('guid'))->update(array('setpoint'=>$modifiedSetpoint));
 
+            event(new PoolEvent(json_decode($modifiedSetpoint, true),"set" ,$request->input('username'),$request->input('guid')));
             // return Grometool::where('guid',$request->guid)->first()->setpoint;
             return back();
         }

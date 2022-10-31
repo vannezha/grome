@@ -68,7 +68,7 @@
         @endforeach
     </div>
     <script type="module">
-        window.Echo.channel('vannyezha_grome800000001').listen('PoolEvent', function(data){
+        window.Echo.channel('set_vannyezha_grome800000001').listen('PoolEvent', function(data){
             console.log(data)
         })
     </script>

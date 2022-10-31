@@ -8,7 +8,7 @@ use ArduinoEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ArduinoController extends Controller
+class AuthController extends Controller
 {
     public function login(Request $request){
         if (Grometool::where('guid', $request->guid)->first()->username == $request->username &&
@@ -17,13 +17,14 @@ class ArduinoController extends Controller
             $user = User::where('username',$request->username)->first();
             $token = $user->createToken($request->guid)->plainTextToken;
             return [
-                'responses'=> 200,
-                'request' => $request->all(),
+                'response'=> 200,
+                'username'=> $request->username,
+                'guid'=> $request->guid,
                 'token' => $token,
             ];
         }
         return [
-            "responses"=> 401,
+            "responses"=> 400,
         ];
     }
 

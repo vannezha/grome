@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PoolEvent implements ShouldBroadcast
+class SetEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -20,14 +20,11 @@ class PoolEvent implements ShouldBroadcast
      * @return void
      */
     public Array $message;
-    public String $mode;
     public String $username;
     public String $guid;
-    public function __construct(Array $message, String $mode, String $username, String $guid)
+    public function __construct(Array $message, String $username, String $guid)
     {
         $this->message = $message;
-        // there is 2 mode, pool and set . pool for post data from esp32, set
-        $this->mode = $mode;
         $this->username = $username;
         $this->guid = $guid;
     }
@@ -39,7 +36,7 @@ class PoolEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel($this->mode."_".$this->username."_".$this->guid);
+        return new Channel("set"."_".$this->username."_".$this->guid);
     }
 
     public function broadcastWith(){

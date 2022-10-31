@@ -9,15 +9,16 @@
 
 </head>
 <body>
-    haloooo
-
+    <h2 id="result"></h2>
 
 
 
     <script type="module">
-        window.Echo.channel('vannyezha_grome800000001').listen('ArduinoEvent', function(data){
+        window.Echo.channel('set_vannyezha_grome800000001').listen('PoolEvent', function(data){
             console.log(data)
+            const result = document.getElementById("result");
+            result.innerText = data["message"];
         })
-    </script>
+        </script>
 </body>
 </html>
