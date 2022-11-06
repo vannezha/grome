@@ -15,14 +15,14 @@ use App\Http\Controllers\SetpointController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/{username}/{guid}', [SetpointController::class, 'pool']);
+
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    Route::post('/{username}/{guid}', [SetpointController::class, 'pool']);
-    Route::get('/{username}/{guid}', [SetpointController::class, 'set']);
+    Route::post('/{username}/{guid}', [SetpointController::class, 'postset']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
